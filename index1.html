@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Interactive Dashboard</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  <script src="https://unpkg.com/heatmap.js"></script>
+
+  <style>
+  
+  #map {
+    height: 400px;
+    float: left;
+    width: 70%;
+  }
+  #heatmapContainer {
+    height: 380px;
+    width: 30%;
+    position: absolute;
+    top: 45px;
+    right: 10px;
+
+  }
+
+  #feature-data-panel {
+    display: none;
+    /*height: 400px;
+    overflow: auto;
+    padding: 10px;
+    float: left;
+    width: 30%;
+    box-sizing: border-box;> */
+  }
+
+
+  .labels-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .gradient-bar {
+    width: 100%;
+  }
+
+  .legend-title {
+    text-align: center;
+  }
+
+  .label-smaller {
+    font-size: 12px;
+  }
+
+
+  .scatter-container,
+  .scatter-container2,
+  .chart1,
+  .chart2 {
+    height: calc(50vh - 50px);
+    position: absolute;
+    bottom: 10px;
+  }
+
+
+
+  .scatter-container {
+    width: 35%;
+    left: 10px;
+  }
+
+  .chart1 {
+    width: 15%;
+    left: calc(35% + 7px);
+  }
+
+  .scatter-container2 {
+    width: 35%;
+    left: calc(50% + 20px);
+  }
+
+  .chart2 {
+    width: 15%;
+    left: calc(80% + 7px);
+  }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div id="map"></div>
+  <div id="feature-data-panel" class="feature-data-panel">
+    <h3>Feature Data</h3>
+    <div id="feature-data"></div>
+  </div>
+
+
+
+  <input type="file" id="shapefileInput" accept=".zip" onchange="handleShapefileUpload(event)">
+  <button onclick="clearShapefile()">Clear Shapefile</button>
+  <button id="captureButton" onclick="captureImage()">Capture Image</button>
+
+  <!-- Add the heatmap container -->
+  <div id="lower-section">
+    <div id="heatmapContainer" class="heatmap-container"></div>
+    <div id="scatterContainer" class="scatter-container"></div>
+    <div id="chart1" class="chart1"></div>
+
+    <div id="scatterContainer2" class="scatter-container2"></div>
+    <div id="chart2" class="chart2"></div>
+
+  </div>
+
+
+
+
+  <!-- Load Leaflet first -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Load Leaflet.heat after Leaflet -->
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+
+  <!-- Load other libraries -->
+  <script src="https://unpkg.com/heatmap.js/build/heatmap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
+  <script src="https://unpkg.com/shpjs/dist/shp.js"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+  <!-- Load your custom script -->
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>
